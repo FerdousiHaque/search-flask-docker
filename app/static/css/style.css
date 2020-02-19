@@ -1,0 +1,52 @@
+body {
+    background-image: url('../img/map.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+form {
+    padding: 12px 20px 12px 20px;
+ }
+
+datalist {
+  font-size: larger;
+}
+
+.card-img-top {
+  width: 100%;
+}
+
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .column {
+    width: 50%;
+  }
+} 
+
+@media (min-width: 992px) {
+  .column {
+    width: 33.33%;
+  }
+} 
+
+@media (min-width: 1200px) {
+  .column {
+    width: 33.33%;
+  }
+}

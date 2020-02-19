@@ -1,0 +1,13 @@
+FROM python:3.6
+LABEL maintainer="ferdousi1628@cseku.ac.bd"
+EXPOSE 5000 32000 3306
+RUN mkdir -p /app
+RUN ls /app
+COPY static /app/static
+COPY templates /app/templates
+COPY app.py /app
+COPY requirements.txt /app
+WORKDIR /app
+RUN pip install --no-cache-dir -r requirements.txt
+ENV IN_DOCKER_CONTAINER Yes
+CMD python app.py

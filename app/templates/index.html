@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Location</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</head>
+<body>
+    <form method="POST" action="" autocomplete="off">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-bars"></i></span>
+            </div>
+            <input type="text" name="locate" id="myInput" class="form-control" placeholder="Search Location..." value="{{ request.form['locate'] }}" list="states-list">
+            <datalist id="states-list">
+              {% for n in names %}
+              <option>{{n[0]}}</option>
+              {% endfor %}
+            </datalist>
+            <span data-clear-input class="input-group-text">
+              <a href="{{ url_for('all') }}">&Alpha;</a>
+            </span>
+            <div class="input-group-append">
+                <span class="input-group-text fa fa-search" type ="submit" method="POST" action=""></span>
+                <span class="input-group-text fa fa-close" onclick="document.getElementById('myInput').value = ''"></span>
+              </div>
+          </div>
+    </form>
+    {% if data %}
+    <div class="container-fluid">
+      <div class="row">
+        {% for info in data %}
+        <div class="column">
+          <div class="card" style="width:400px">
+          <img class="card-img-top" src="{{info[4]}}" alt="Card image">
+          <div class="card-body">
+              <h4 class="card-title">{{info[0]}}</h4>
+              <p class="card-text">{{info[1]}} 
+                {% for x in range (0,5) %}
+                {% if info[1]|round(2, 'floor') - x >= 1 %}
+                <i class="fa fa-star gold" style="color:#e9ce18;"></i>
+                {% else %}
+                <i class="fa fa-star gold" style="color:darkgray;"></i>
+                {% endif %}
+                {% endfor %}
+              ({{info[2]}})</p>
+              <p class="card-text">{{info[3]}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div> 
+    {% else %}
+     <h6>There are no results to show</h6>
+    {% endif %}
+</body>
+</html>
